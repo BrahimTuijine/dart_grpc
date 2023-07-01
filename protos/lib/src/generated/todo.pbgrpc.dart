@@ -21,9 +21,9 @@ export 'todo.pb.dart';
 
 @$pb.GrpcServiceName('TodoService')
 class TodoServiceClient extends $grpc.Client {
-  static final _$getTodo = $grpc.ClientMethod<$0.getTodoByIdRequest, $0.Todo>(
+  static final _$getTodo = $grpc.ClientMethod<$0.GetTodoByIdRequest, $0.Todo>(
       '/TodoService/getTodo',
-      ($0.getTodoByIdRequest value) => value.writeToBuffer(),
+      ($0.GetTodoByIdRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $0.Todo.fromBuffer(value));
 
   TodoServiceClient($grpc.ClientChannel channel,
@@ -32,7 +32,7 @@ class TodoServiceClient extends $grpc.Client {
       : super(channel, options: options,
         interceptors: interceptors);
 
-  $grpc.ResponseFuture<$0.Todo> getTodo($0.getTodoByIdRequest request, {$grpc.CallOptions? options}) {
+  $grpc.ResponseFuture<$0.Todo> getTodo($0.GetTodoByIdRequest request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$getTodo, request, options: options);
   }
 }
@@ -42,18 +42,18 @@ abstract class TodoServiceBase extends $grpc.Service {
   $core.String get $name => 'TodoService';
 
   TodoServiceBase() {
-    $addMethod($grpc.ServiceMethod<$0.getTodoByIdRequest, $0.Todo>(
+    $addMethod($grpc.ServiceMethod<$0.GetTodoByIdRequest, $0.Todo>(
         'getTodo',
         getTodo_Pre,
         false,
         false,
-        ($core.List<$core.int> value) => $0.getTodoByIdRequest.fromBuffer(value),
+        ($core.List<$core.int> value) => $0.GetTodoByIdRequest.fromBuffer(value),
         ($0.Todo value) => value.writeToBuffer()));
   }
 
-  $async.Future<$0.Todo> getTodo_Pre($grpc.ServiceCall call, $async.Future<$0.getTodoByIdRequest> request) async {
+  $async.Future<$0.Todo> getTodo_Pre($grpc.ServiceCall call, $async.Future<$0.GetTodoByIdRequest> request) async {
     return getTodo(call, await request);
   }
 
-  $async.Future<$0.Todo> getTodo($grpc.ServiceCall call, $0.getTodoByIdRequest request);
+  $async.Future<$0.Todo> getTodo($grpc.ServiceCall call, $0.GetTodoByIdRequest request);
 }

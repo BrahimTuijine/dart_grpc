@@ -75,13 +75,13 @@ class Todo extends $pb.GeneratedMessage {
   void clearCompleted() => clearField(3);
 }
 
-class getTodoByIdRequest extends $pb.GeneratedMessage {
-  factory getTodoByIdRequest() => create();
-  getTodoByIdRequest._() : super();
-  factory getTodoByIdRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
-  factory getTodoByIdRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+class GetTodoByIdRequest extends $pb.GeneratedMessage {
+  factory GetTodoByIdRequest() => create();
+  GetTodoByIdRequest._() : super();
+  factory GetTodoByIdRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory GetTodoByIdRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
 
-  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'getTodoByIdRequest', createEmptyInstance: create)
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'GetTodoByIdRequest', createEmptyInstance: create)
     ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
     ..hasRequiredFields = false
   ;
@@ -90,22 +90,22 @@ class getTodoByIdRequest extends $pb.GeneratedMessage {
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
   'Will be removed in next major version')
-  getTodoByIdRequest clone() => getTodoByIdRequest()..mergeFromMessage(this);
+  GetTodoByIdRequest clone() => GetTodoByIdRequest()..mergeFromMessage(this);
   @$core.Deprecated(
   'Using this can add significant overhead to your binary. '
   'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
   'Will be removed in next major version')
-  getTodoByIdRequest copyWith(void Function(getTodoByIdRequest) updates) => super.copyWith((message) => updates(message as getTodoByIdRequest)) as getTodoByIdRequest;
+  GetTodoByIdRequest copyWith(void Function(GetTodoByIdRequest) updates) => super.copyWith((message) => updates(message as GetTodoByIdRequest)) as GetTodoByIdRequest;
 
   $pb.BuilderInfo get info_ => _i;
 
   @$core.pragma('dart2js:noInline')
-  static getTodoByIdRequest create() => getTodoByIdRequest._();
-  getTodoByIdRequest createEmptyInstance() => create();
-  static $pb.PbList<getTodoByIdRequest> createRepeated() => $pb.PbList<getTodoByIdRequest>();
+  static GetTodoByIdRequest create() => GetTodoByIdRequest._();
+  GetTodoByIdRequest createEmptyInstance() => create();
+  static $pb.PbList<GetTodoByIdRequest> createRepeated() => $pb.PbList<GetTodoByIdRequest>();
   @$core.pragma('dart2js:noInline')
-  static getTodoByIdRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<getTodoByIdRequest>(create);
-  static getTodoByIdRequest? _defaultInstance;
+  static GetTodoByIdRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<GetTodoByIdRequest>(create);
+  static GetTodoByIdRequest? _defaultInstance;
 
   @$pb.TagNumber(1)
   $core.int get id => $_getIZ(0);
