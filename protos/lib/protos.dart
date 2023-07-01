@@ -3,6 +3,6 @@
 /// More dartdocs go here.
 library;
 
-export 'src/protos_base.dart';
-
-// TODO: Export any libraries intended for clients of this package.
+export 'src/generated/todo.pb.dart';
+export 'src/generated/todo.pbenum.dart';
+export 'src/generated/todo.pbjson.dart';
