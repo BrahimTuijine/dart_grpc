@@ -75,6 +75,48 @@ class Todo extends $pb.GeneratedMessage {
   void clearCompleted() => clearField(3);
 }
 
+class getTodoByIdRequest extends $pb.GeneratedMessage {
+  factory getTodoByIdRequest() => create();
+  getTodoByIdRequest._() : super();
+  factory getTodoByIdRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory getTodoByIdRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo(_omitMessageNames ? '' : 'getTodoByIdRequest', createEmptyInstance: create)
+    ..a<$core.int>(1, _omitFieldNames ? '' : 'id', $pb.PbFieldType.O3)
+    ..hasRequiredFields = false
+  ;
+
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.deepCopy] instead. '
+  'Will be removed in next major version')
+  getTodoByIdRequest clone() => getTodoByIdRequest()..mergeFromMessage(this);
+  @$core.Deprecated(
+  'Using this can add significant overhead to your binary. '
+  'Use [GeneratedMessageGenericExtensions.rebuild] instead. '
+  'Will be removed in next major version')
+  getTodoByIdRequest copyWith(void Function(getTodoByIdRequest) updates) => super.copyWith((message) => updates(message as getTodoByIdRequest)) as getTodoByIdRequest;
+
+  $pb.BuilderInfo get info_ => _i;
+
+  @$core.pragma('dart2js:noInline')
+  static getTodoByIdRequest create() => getTodoByIdRequest._();
+  getTodoByIdRequest createEmptyInstance() => create();
+  static $pb.PbList<getTodoByIdRequest> createRepeated() => $pb.PbList<getTodoByIdRequest>();
+  @$core.pragma('dart2js:noInline')
+  static getTodoByIdRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<getTodoByIdRequest>(create);
+  static getTodoByIdRequest? _defaultInstance;
+
+  @$pb.TagNumber(1)
+  $core.int get id => $_getIZ(0);
+  @$pb.TagNumber(1)
+  set id($core.int v) { $_setSignedInt32(0, v); }
+  @$pb.TagNumber(1)
+  $core.bool hasId() => $_has(0);
+  @$pb.TagNumber(1)
+  void clearId() => clearField(1);
+}
+
 
 const _omitFieldNames = $core.bool.fromEnvironment('protobuf.omit_field_names');
 const _omitMessageNames = $core.bool.fromEnvironment('protobuf.omit_message_names');

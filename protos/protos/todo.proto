@@ -6,3 +6,11 @@ message Todo {
     string title = 2;
     bool completed = 3;   
 }
+message getTodoByIdRequest {
+    int32 id = 1;
+}
+
+
+service TodoService {
+    rpc getTodo (getTodoByIdRequest) returns (Todo);
+}
