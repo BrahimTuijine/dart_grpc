@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:protos/protos.dart';
 
@@ -11,6 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -31,19 +34,29 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
   late ClientChannel _channel;
+
+  late TodoServiceClient _stub;
+
+  Todo? todo;
 
   @override
   void initState() {
     super.initState();
-    _channel = ClientChannel('localhost' , port: 8080);
+    _channel = ClientChannel(
+      '192.168.1.114',
+      port: 8080,
+      options: const ChannelOptions(credentials: ChannelCredentials.insecure()),
+    );
+
+    _stub = TodoServiceClient(_channel);
   }
 
-  void _incrementCounter() {
+  Future<void> getTodo() async {
+    final id = Random().nextInt(100);
+    final todo = await _stub.getTodo(GetTodoByIdRequest()..id = id);
     setState(() {
-      _counter++;
+      this.todo = todo;
     });
   }
 
@@ -58,18 +71,17 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
+            if (todo != null) ...[
+              Text(todo!.id.toString()),
+              Text(todo!.title),
+              Text(todo!.completed.toString()),
+            ] else
+              const Text('get your todo'),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: getTodo,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),

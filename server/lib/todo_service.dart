@@ -7,7 +7,7 @@ class TodoService extends TodoServiceBase {
 
     final todo = Todo()
       ..completed = false
-      ..id = 1
+      ..id = id
       ..title = 'title $id';
 
     return todo;
