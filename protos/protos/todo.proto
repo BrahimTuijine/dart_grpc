@@ -1,10 +1,9 @@
 syntax = "proto3";
 
-
 message Todo {
     int32 id = 1;
     string title = 2;
-    bool completed = 3;   
+    bool completed = 3; 
 }
 
 message GetTodoByIdRequest {
@@ -14,4 +13,5 @@ message GetTodoByIdRequest {
 
 service TodoService {
     rpc getTodo (GetTodoByIdRequest) returns (Todo);
+    rpc getTodoStream (GetTodoByIdRequest) returns (stream Todo);
 }

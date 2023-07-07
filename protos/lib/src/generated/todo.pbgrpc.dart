@@ -25,6 +25,10 @@ class TodoServiceClient extends $grpc.Client {
       '/TodoService/getTodo',
       ($0.GetTodoByIdRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $0.Todo.fromBuffer(value));
+  static final _$getTodoStream = $grpc.ClientMethod<$0.GetTodoByIdRequest, $0.Todo>(
+      '/TodoService/getTodoStream',
+      ($0.GetTodoByIdRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $0.Todo.fromBuffer(value));
 
   TodoServiceClient($grpc.ClientChannel channel,
       {$grpc.CallOptions? options,
@@ -34,6 +38,10 @@ class TodoServiceClient extends $grpc.Client {
 
   $grpc.ResponseFuture<$0.Todo> getTodo($0.GetTodoByIdRequest request, {$grpc.CallOptions? options}) {
     return $createUnaryCall(_$getTodo, request, options: options);
+  }
+
+  $grpc.ResponseStream<$0.Todo> getTodoStream($0.GetTodoByIdRequest request, {$grpc.CallOptions? options}) {
+    return $createStreamingCall(_$getTodoStream, $async.Stream.fromIterable([request]), options: options);
   }
 }
 
@@ -49,11 +57,23 @@ abstract class TodoServiceBase extends $grpc.Service {
         false,
         ($core.List<$core.int> value) => $0.GetTodoByIdRequest.fromBuffer(value),
         ($0.Todo value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.GetTodoByIdRequest, $0.Todo>(
+        'getTodoStream',
+        getTodoStream_Pre,
+        false,
+        true,
+        ($core.List<$core.int> value) => $0.GetTodoByIdRequest.fromBuffer(value),
+        ($0.Todo value) => value.writeToBuffer()));
   }
 
   $async.Future<$0.Todo> getTodo_Pre($grpc.ServiceCall call, $async.Future<$0.GetTodoByIdRequest> request) async {
     return getTodo(call, await request);
   }
 
+  $async.Stream<$0.Todo> getTodoStream_Pre($grpc.ServiceCall call, $async.Future<$0.GetTodoByIdRequest> request) async* {
+    yield* getTodoStream(call, await request);
+  }
+
   $async.Future<$0.Todo> getTodo($grpc.ServiceCall call, $0.GetTodoByIdRequest request);
+  $async.Stream<$0.Todo> getTodoStream($grpc.ServiceCall call, $0.GetTodoByIdRequest request);
 }

@@ -44,20 +44,27 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
     _channel = ClientChannel(
-      '192.168.1.114',
+      '192.168.1.103',
       port: 8080,
       options: const ChannelOptions(credentials: ChannelCredentials.insecure()),
     );
-
     _stub = TodoServiceClient(_channel);
   }
 
   Future<void> getTodo() async {
     final id = Random().nextInt(100);
-    final todo = await _stub.getTodo(GetTodoByIdRequest()..id = id);
-    setState(() {
-      this.todo = todo;
-    });
+    try {
+      final todo = await _stub.getTodo(GetTodoByIdRequest()..id = id);
+      setState(() {
+        this.todo = todo;
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Stream<Todo>? getTodoStream() {
+    return _stub.getTodoStream(GetTodoByIdRequest()..id = 10);
   }
 
   @override
@@ -69,8 +76,26 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
+          children: [
+            // StreamBuilder<Todo>(
+            //   stream: getTodoStream(),
+            //   builder: (context, snapshot) {
+            //     if (snapshot.hasData) {
+            //       return Column(
+            //         mainAxisAlignment: MainAxisAlignment.center,
+            //         mainAxisSize: MainAxisSize.max,
+            //         children: <Widget>[
+            //           Text(
+            //               '''${snapshot.data!.id} ${snapshot.data!.title} ${snapshot.data!.completed}'''),
+            //         ],
+            //       );
+            //     } else if (snapshot.hasError) {
+            //       return Text(snapshot.error.toString());
+            //     } else {
+            //       return const CircularProgressIndicator();
+            //     }
+            //   },
+            // ),
             if (todo != null) ...[
               Text(todo!.id.toString()),
               Text(todo!.title),
