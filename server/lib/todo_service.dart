@@ -7,16 +7,16 @@ class TodoService extends TodoServiceBase {
   Future<Todo> getTodo(ServiceCall call, GetTodoByIdRequest request) async {
     final id = request.id;
 
-    final todo = Todo()
-      ..completed = false
-      ..id = id
-      ..title = 'titl $id';
+    // final todo =
 
     // if (id != 10) {
     //   throw FormatException('Expected at least 1 section');
     // }
 
-    return todo;
+    return Todo()
+      ..completed = false
+      ..id = id
+      ..title = 'titl $id';
   }
 
   @override
@@ -30,6 +30,16 @@ class TodoService extends TodoServiceBase {
       yield todo;
 
       await Future.delayed(Duration(seconds: 1));
+    }
+  }
+
+  @override
+  Future<Empty> returnEpmpty(
+      ServiceCall call, GetTodoByIdRequest request) async {
+    if (request.id != 10) {
+      return Empty();
+    } else {
+      throw GrpcError.ok();
     }
   }
 }

@@ -29,6 +29,10 @@ class TodoServiceClient extends $grpc.Client {
       '/TodoService/getTodoStream',
       ($0.GetTodoByIdRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) => $0.Todo.fromBuffer(value));
+  static final _$returnEpmpty = $grpc.ClientMethod<$0.GetTodoByIdRequest, $0.Empty>(
+      '/TodoService/returnEpmpty',
+      ($0.GetTodoByIdRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $0.Empty.fromBuffer(value));
 
   TodoServiceClient($grpc.ClientChannel channel,
       {$grpc.CallOptions? options,
@@ -42,6 +46,10 @@ class TodoServiceClient extends $grpc.Client {
 
   $grpc.ResponseStream<$0.Todo> getTodoStream($0.GetTodoByIdRequest request, {$grpc.CallOptions? options}) {
     return $createStreamingCall(_$getTodoStream, $async.Stream.fromIterable([request]), options: options);
+  }
+
+  $grpc.ResponseFuture<$0.Empty> returnEpmpty($0.GetTodoByIdRequest request, {$grpc.CallOptions? options}) {
+    return $createUnaryCall(_$returnEpmpty, request, options: options);
   }
 }
 
@@ -64,6 +72,13 @@ abstract class TodoServiceBase extends $grpc.Service {
         true,
         ($core.List<$core.int> value) => $0.GetTodoByIdRequest.fromBuffer(value),
         ($0.Todo value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.GetTodoByIdRequest, $0.Empty>(
+        'returnEpmpty',
+        returnEpmpty_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $0.GetTodoByIdRequest.fromBuffer(value),
+        ($0.Empty value) => value.writeToBuffer()));
   }
 
   $async.Future<$0.Todo> getTodo_Pre($grpc.ServiceCall call, $async.Future<$0.GetTodoByIdRequest> request) async {
@@ -74,6 +89,11 @@ abstract class TodoServiceBase extends $grpc.Service {
     yield* getTodoStream(call, await request);
   }
 
+  $async.Future<$0.Empty> returnEpmpty_Pre($grpc.ServiceCall call, $async.Future<$0.GetTodoByIdRequest> request) async {
+    return returnEpmpty(call, await request);
+  }
+
   $async.Future<$0.Todo> getTodo($grpc.ServiceCall call, $0.GetTodoByIdRequest request);
   $async.Stream<$0.Todo> getTodoStream($grpc.ServiceCall call, $0.GetTodoByIdRequest request);
+  $async.Future<$0.Empty> returnEpmpty($grpc.ServiceCall call, $0.GetTodoByIdRequest request);
 }

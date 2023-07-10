@@ -13,5 +13,8 @@ message GetTodoByIdRequest {
 
 service TodoService {
     rpc getTodo (GetTodoByIdRequest) returns (Todo);
-    rpc getTodoStream (GetTodoByIdRequest) returns (stream Todo);
+    rpc getTodoStream (GetTodoByIdRequest) returns (stream Todo);   
+    rpc returnEpmpty (GetTodoByIdRequest) returns (Empty);                                        
 }
+
+message Empty {}
